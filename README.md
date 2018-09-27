@@ -14,9 +14,14 @@
   * env.py 每次执行alembic都会加载该文件，提供项目Sqlalchemy Model的连接
   * script.py.mako 迁移脚本生成模版
   * versions 存放生成的迁移脚本目录
+* config.py 配置文件，定义开发和生成环境配置，使用环境变量ENV来选择（suprevisor的`environment`设置）
+* statics/
+  * db/ 数据库相关脚本
+  * favicon.ico 
 * app/ 用于存放应用
-  * templates/
-  * statics/
+  * __init__.py  初始化应用，日志、数据库等
+  * models/ 数据库ORM
+  * handlers/ 请求处理
   * main/ 主程序
     * __init__.py 创建蓝本
     * errors.py 错误处理
@@ -26,18 +31,13 @@
     * __init__.py 创建蓝本
     * modelName.py  具体模块
     * errors.py 错误处理
-  * __init__.py
-  * email.py
-  * models.py
+<!-- * venv/ 这里是开发所需要的python虚拟环境，用virtualenvwrapper管理后，该文件在$HOME/.virtualenv/下面 -->
+<!-- * serverConfig/ 这里存放服务器配置时使用的nginx，uwsgi配置文件以及https证书 -->
+* requirements.txt 项目所有依赖包 `pip freeze > requirements.txt`
+* main.py 用于启动程序
 * tests/  单元测试
   * __init__.py
   * test*.py
-* imgs/ 小程序所使用的图片
-* venv/ 这里是开发所需要的python虚拟环境，用virtualenvwrapper管理后，该文件在$HOME/.virtualenv/下面
-* serverConfig/ 这里存放服务器配置时使用的nginx，uwsgi配置文件以及https证书
-* requirements.txt 项目所有依赖包 `pip freeze > requirements.txt`
-* config.py 配置文件
-* manage.py 用于启动程序
 
 ## 常用命令
 ### alembic

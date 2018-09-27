@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import tornado.web
+from tornado.web import RequestHandler
+from tornado_sqlalchemy import SessionMixin, as_future
 
-class BaseHandler(tornado.web.RequestHandler):
+class BaseHandler(SessionMixin, RequestHandler):
   pass

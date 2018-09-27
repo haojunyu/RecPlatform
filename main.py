@@ -15,7 +15,7 @@ define('port', default=51888, type=int, help='server bind port')
 
 
 def run(host, port):
-  app = create_app('development')
+  app = create_app()
   http_server = HTTPServer(app)
   http_server.listen(port, address=host)
   IOLoop.instance().start()

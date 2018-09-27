@@ -26,8 +26,10 @@ class ProductionConfig(Config):
   MYSQL_URI = 'mysql://recsys:recsys@localhost/RecSys'
 
 
-CONFIG = {
-  'development' : DevelopmentConfig,
-  'production'  : ProductionConfig,
-  'default'     : DevelopmentConfig
-}
+# 根据环境变量ENV设置配置，默认开发环境
+env = os.getenv('ENV', 'DEVELOPMENT')
+CONFIG = DevelopmentConfig
+if env == 'PRODUCTION':
+  CONFIG = ProductionConfig
+
+
