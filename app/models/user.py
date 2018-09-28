@@ -30,5 +30,9 @@ class User(Base):
 
   @staticmethod
   def gen_users():
+    init_users = []
     user = User(id=1,name='hjy',passwd='hjy',email='haojunyu2012@gmail.com')
+    init_users.append(user)
+    return init_users
+
 
