@@ -6,6 +6,7 @@
 * SQLAlchemy
 * alembic
 * restful api
+* itsdangerous
 
 
 ## 目录框架

@@ -1,12 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from .base import *
+from config import CONFIG
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
 
 class User(Base):
   __tablename__ = 'users'
 
   id = Column('id', Integer, primary_key=True)
-  name = Column('name', String(64), nullable=False)
+  name = Column('name', String(64), unique=True, nullable=False)
   passwd = Column('passwd', String(64), nullable=False)
   email = Column(String(32), nullable=False, unique=True)
 
@@ -36,3 +39,18 @@ class User(Base):
     return init_users
 
 
+  # 生成授权token
+  def generate_auth_token(self, expiration=3600):
+    s = Serializer(CONFIG.SECRET_KEY, expires_in=expiration)
+    return s.dumps({'name':self.name})
+
+  # 验证授权token
+  @staticmethod
+  def verify_auth_token(token):
+    s = Serializer(CONFIG.SECRET_KEY)
+    try:
+      data = s.loads(token)
+      print(data)
+    except:
+      data = None
+    return data
